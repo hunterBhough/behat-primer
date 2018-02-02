@@ -1,0 +1,55 @@
+# Default project
+# Common settings for all profiles
+default:
+  suites:
+    default:
+      # paths:
+      #   features: features
+      #   bootstrap: features/bootstrap
+      contexts:
+        - FeatureContext: ~
+        - ScreenshotContext: ~
+        - Drupal\DrupalExtension\Context\MinkContext: ~
+        - Drupal\DrupalExtension\Context\DrupalContext: ~
+        - Drupal\DrupalExtension\Context\MarkupContext: ~
+        - Drupal\DrupalExtension\Context\MessageContext: ~
+        # - Drupal\DrupalExtension\Context\DrushContext: ~
+        - FeatureContext:
+            parameters:
+              screenshot_dir: %paths.base%/artifacts/screenshots
+  extensions:
+    Behat\MinkExtension:
+      javascript_session: selenium2
+      selenium2:
+        browser: chrome
+        wd_host: http://selenium:4444/wd/hub
+      # Set http or https and internal port for web server container.
+      base_url: 'https://www.google.com/'
+      goutte:
+        guzzle_parameters:
+          # Disable checking of the SSL certificates.
+          verify: false
+          config:
+            curl:
+              CURLOPT_TIMEOUT: 1500
+              CURLOPT_CONNECTTIMEOUT: 1000
+    Drupal\DrupalExtension:
+#     blackbox: ~
+    #  api_driver: drupal
+    #  drush:
+    #    root: /drupal/drush
+    #  drupal:
+    #    drupal_root: /drupal/smokefree
+     selectors:
+       message_selector: .messages
+       error_message_selector: .messages.error
+       success_message_selector: .messages.status
+       warning_message_selector: .messages.warning
+     region_map:
+       header: "#header"
+       main_nav: "#main-nav"
+       content: "#content"
+       footer: "#footer"
+    Vanare\BehatCucumberJsonFormatter\Extension:
+      filename: report.json
+      outputDir: %paths.base%/artifacts
