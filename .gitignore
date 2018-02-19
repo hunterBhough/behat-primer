@@ -1,2 +1,6 @@
-screenshots/*.png
+artifacts/screenshots
+docker
+composer.lock
+bin
+vendor
 .idea
