@@ -6,7 +6,7 @@
 # If else statement to set default parameters if no parameters was passed.
 
 if [ -z "$*" ]; then
-  BEHAT_PARAMETERS="--colors --format=pretty --out=std --config=behat.hiv.yml"
+  BEHAT_PARAMETERS="--colors --format=pretty --out=std --config=behat.google-example.yml"
 else 
   BEHAT_PARAMETERS="$*"
 fi
@@ -31,25 +31,3 @@ docker-compose -f docker-compose.behat.yml exec behat /srv/entrypoint.sh "$BEHAT
 
 # Stop and remove containers.
 docker-compose -f docker-compose.behat.yml down
-
-
-
-
-
-
-
-
-
-#echo 'building network'
-#docker network create behat_network
-
-#echo 'building selenium container'
-#docker run -d -p 4444:4444 -v /dev/shm:/dev/shm --network behat_network selenium/standalone-chrome:3.9.1-actinium
-
-#echo 'building behat container'
-#docker run \
-#-v behat.common.yml:/srv/behat.common.yml \
-#-v project-yamls:/srv/project-yamls \
-#-v features:/srv/features \
-#-v artifacts:/srv/artifacts \
-#bergil/docker-behat

@@ -1,9 +1,9 @@
 # Local overrides to the default profile
-smokefree:
+hiv:
   extensions:
     Behat\MinkExtension:
       # URL of the site when accessed locally.
-      base_url: https://smokefree.gov
+      base_url: https://google.com
       # Configure browser to be used.
       # Stick with chrome by default. It's 2x faster than firefox or phantomjs (your results may vary).
       browser_name: chrome
