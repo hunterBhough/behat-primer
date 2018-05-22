@@ -6,4 +6,4 @@ Scenario: Run a search for Behat
     Given I am on "http://google.com/?complete=0"
     When I fill in "lst-ib" with "Behat"
     And I press "Google Search"
-    Then I should see "Behat — a php framework for autotesting your business expectations." in the ".vsc:first-child a" element
+    Then I should see "Behat — a php framework for autotesting your business expectations."

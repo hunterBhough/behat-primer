@@ -6,7 +6,7 @@
 # If else statement to set default parameters if no parameters was passed.
 
 if [ -z "$*" ]; then
-  BEHAT_PARAMETERS="--colors --format=pretty --out=std --config=behat.google-example.yml"
+  BEHAT_PARAMETERS="--colors --format=pretty --out=std --config=behat.google-example.yml features/trunk"
 else 
   BEHAT_PARAMETERS="$*"
 fi
