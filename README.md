@@ -29,6 +29,7 @@ docker-compose -f docker-compose.behat.yml down
 
 ## Debugging
 In case you want to see what behat is doing:  
+First, you will want to follow all steps under Rapid Development (above) so your selenium container will persist.  
 in Safari or Alfred, go to the url: vnc://localhost:5901  
 Password: secret  
 For windows, you will need a 3rd party vnc client like RealVNC. The url and password are the same as above
