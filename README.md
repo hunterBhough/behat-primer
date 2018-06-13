@@ -26,3 +26,9 @@ Then comment out lines 15-33, and uncomment line 30 (docker-compose -f docker-co
 Now you can execute tests with test.sh much faster feedback loop.  
 To stop your network when done with testing, run the command:  
 docker-compose -f docker-compose.behat.yml down
+
+## Debugging
+In case you want to see what behat is doing:  
+in Safari or Alfred, go to the url: vnc://localhost:5901  
+Password: secret  
+For windows, you will need a 3rd party vnc client like RealVNC. The url and password are the same as above
