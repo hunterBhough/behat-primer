@@ -2,10 +2,13 @@ version: "2"
 
 services:
   selenium:
-    image: selenium/standalone-chrome
+    image: selenium/standalone-chrome-debug
     restart: on-failure:5
     volumes:
       - /dev/shm:/dev/shm
+    ports:
+      - "5901:5900"
+      - "4444:4444"
 
   behat:
     tty: true

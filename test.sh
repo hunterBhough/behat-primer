@@ -23,7 +23,7 @@ sleep 3
 echo "Copying your desired yaml to the root directory. It's a behat thing."
 echo '...'
 docker-compose -f docker-compose.behat.yml exec behat cp ./project-yamls/*.yml /srv
-#docker-compose -f docker-compose.behat.yml exec behat /drupal/smokefree composer install
+# docker-compose -f docker-compose.behat.yml exec behat /drupal/smokefree composer install
 
 # Run tests inside Behat container.
 echo "Running tests."
