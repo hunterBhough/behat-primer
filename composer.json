@@ -1,5 +1,5 @@
 {
-  "name": "hunterBhough/docker-behat",
+  "name": "bergil/docker-behat",
   "minimum-stability": "stable",
   "require": {
     "behat/behat": "*",
