@@ -12,6 +12,11 @@ default:
         - FeatureContext:
             parameters:
               screenshot_dir: %paths.base%/artifacts/screenshots
+        - emuse\BehatHTMLFormatter\Context\ScreenshotContext:
+            screenshotDir: build/html/behat/assets/screenshots
+  formatters:
+    html:
+      output_path: %paths.base%/build/html/behat
   extensions:
     Behat\MinkExtension:
       javascript_session: selenium2
@@ -28,6 +33,13 @@ default:
             curl:
               CURLOPT_TIMEOUT: 300
               CURLOPT_CONNECTTIMEOUT: 0
+    emuse\BehatHTMLFormatter\BehatHTMLFormatterExtension:
+      name: html
+      renderer: Twig,Behat2
+      file_name: index
+      print_args: true
+      print_outp: true
+      loop_break: true
     Drupal\DrupalExtension:
       blackbox: ~
 #        api_driver: drupal

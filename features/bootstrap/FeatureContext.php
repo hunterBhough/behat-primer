@@ -22,7 +22,46 @@ use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
 {
 
-     protected $screenshot_dir = '/srv/screenshots';
+    /**
+     * @BeforeScenario
+     *
+     * @param BeforeScenarioScope $scope
+     *
+     */
+    public function setUpTestEnvironment($scope)
+    {
+        $this->currentScenario = $scope->getScenario();
+    }
+
+    /**
+     * @AfterStep
+     *
+     * @param AfterStepScope $scope
+     */
+    public function afterStep($scope)
+    {
+        //if test has failed, and is not an api test, get screenshot
+        if(!$scope->getTestResult()->isPassed())
+        {
+            //create filename string
+
+            $featureFolder = preg_replace('/\W/', '', $scope->getFeature()->getTitle());
+                
+            $scenarioName = $this->currentScenario->getTitle();
+            $fileName = preg_replace('/\W/', '', $scenarioName) . '.png';
+
+            //create screenshots directory if it doesn't exist
+            if (!file_exists('build/html/assets/screenshots/' . $featureFolder)) {
+                mkdir('build/html/assets/screenshots/' . $featureFolder);
+            }
+
+            //take screenshot and save as the previously defined filename
+            $this->driver->takeScreenshot('build/html/assets/screenshots/' . $featureFolder . '/' . $fileName);
+            // For Selenium2 Driver you can use:
+            // file_put_contents('build/html/assets/screenshots/' . $featureFolder . '/' . $fileName, $this->getSession()->getDriver()->getScreenshot());
+        }
+    }
+    protected $screenshot_dir = '/srv/screenshots';
 
     /**
      * Initializes context.
@@ -33,7 +72,7 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
      */
     public function __construct($parameters)
     {
-         $this->parameters = $parameters;
+        $this->parameters = $parameters;
         if (isset($parameters['screenshot_dir'])) {
             $this->screenshot_dir = $parameters['screenshot_dir'];
         }
@@ -220,20 +259,21 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
     /**
      * @When I scroll :elementId into view
      */
-    public function scrollIntoView($elementId) {
-        $function = <<<JS
-(function(){
- var elem = document.getElementById("$elementId");
-       elem.scrollIntoView(false);
-       })()
-JS;
-        try {
-            $this->getSession()->executeScript($function);
-        }
-        catch(Exception $e) {
-            throw new \Exception("ScrollIntoView failed");
-        }
-    }
+    // this is bad code
+//     public function scrollIntoView($elementId) {
+//         $function = <<<JS
+// (function(){
+//  var elem = document.getElementById("$elementId");
+//        elem.scrollIntoView(false);
+//        })()
+// JS;
+//         try {
+//             $this->getSession()->executeScript($function);
+//         }
+//         catch(Exception $e) {
+//             throw new \Exception("ScrollIntoView failed");
+//         }
+//     }
 
     /**
      * @When /^The website should open in a new tab$/

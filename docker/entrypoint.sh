@@ -31,5 +31,6 @@ else
 
   # Fix permissions to artifacts folder.
   chmod -R 777 /srv/artifacts
+  chmod -R 777 /srv/build
   
 fi

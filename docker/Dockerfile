@@ -23,9 +23,13 @@ RUN apk add --no-cache \
     && composer global require "hirak/prestissimo:^0.3"
 
 # Add files and folders to container.
-ADD ["composer.json", "/srv/"]
+ADD ["composer.json", "composer.lock", "entrypoint.sh", "/srv/"]
 WORKDIR /srv
 
 # Install and initialize Behat, create folder for artifacts.
 RUN composer install \
-    && bin/behat --init
+    && bin/behat --init \
+    && mkdir -p artifacts \
+    && mkdir -p build/html/behat/assets/screenshots
+
+ENTRYPOINT ["/srv/entrypoint.sh"]
