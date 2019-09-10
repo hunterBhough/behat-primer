@@ -1,6 +1,19 @@
 # behat-primer
 
 ## Setup
+Visit https://getcomposer.org/doc/00-intro.md
+ Scroll down to the "Globally" section
+ Select the "Download page instructions" hyperlink
+    Copy and paste the first script line "php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"" into your terminal then press Enter
+    Copy and paste the second script line "php -r "if (hash_file('sha384', 'composer-setup.php') === '48e3236262b34d30969dca3c37281b3b4bbe3221bda826ac6a9a62d6444cdb0dcd0615698a5cbe587c3f0fe57a54d8f5') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+                                           php composer-setup.php" and press Enter
+    After the second script has been entered, you should see the words "Installer verified"
+        To confirm that it has been installed, enter "ls" and look for "composer.phar" under license
+ Return to the homepage https://getcomposer.org/doc/00-intro.md and return back to the Globally section
+    Copy and paste the script line "mv composer.phar /usr/local/bin/composer" in the terminal and press Enter
+        It will respond, "Permission Denied". Enter "sudo !!"
+            It will then prompt you for your computer password
+            Once entered, it should installed and ready to run! 
 ### Prerequisites
 Docker
 ### Projects-yamls
